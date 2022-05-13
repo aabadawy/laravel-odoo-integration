@@ -16,7 +16,7 @@ This repo can be used to scaffold a Laravel package. Follow these steps to get s
 You can install the package via composer:
 
 ```bash
-composer require :aabadawy/laravel-odoo-integration
+composer require aabadawy/laravel-odoo-integration
 ```
 
 You can publish and run the migrations with:
