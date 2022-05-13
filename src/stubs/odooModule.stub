@@ -1,0 +1,14 @@
+<?php
+
+namespace {{ OdooModuleNamespace }};
+
+use Aabadawy\LaravelOdooIntegration\OdooModule;
+
+class {{OdooModuleName}}Module extends OdooModule
+{
+
+    public function moduleName(): string
+    {
+        //odoo module name here
+    }
+}

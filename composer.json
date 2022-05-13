@@ -1,24 +1,22 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "aabadawy/laravel-odoo-integration",
+    "description": "integrate laravel app with odoo app",
     "keywords": [
-        ":vendor_name",
+        "Ahemd Ali Badawy",
         "laravel",
-        ":package_slug"
+        "laravel-odoo-integration"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/aabadawy/laravel-odoo-integration",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Ahmed Badawy",
+            "email": "ahmed.badawy.fcai@gmail.com",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.9.2",
-        "illuminate/contracts": "^9.0"
+        "php": "^8.1"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.0",
@@ -34,13 +32,12 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Aabadawy\\LaravelOdooIntegration\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Aabadawy\\LaravelOdooIntegration\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -49,16 +46,17 @@
         "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
-            ],
-            "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
-            }
+                "Aabadawy\\LaravelOdooIntegration\\LaravelOdooIntegrationServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
