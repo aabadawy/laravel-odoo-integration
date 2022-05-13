@@ -2,9 +2,7 @@
 
 namespace Aabadawy\LaravelOdooIntegration;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+use Illuminate\Support\{Arr,Collection,Str};
 use JetBrains\PhpStorm\ArrayShape;
 
 class OdooBuilder

@@ -2,10 +2,7 @@
 
 namespace Aabadawy\LaravelOdooIntegration;
 
-use App\Common\Services\Odoo\Exceptions\ObjectNotFoundException;
-use App\Common\Services\Odoo\Exceptions\QueryParamConflictException;
-use App\Common\Services\Odoo\Exceptions\ServerOdooException;
-use App\Domain\User\Entities\User;
+use Aabadawy\LaravelOdooIntegration\Exceptions\{ObjectNotFoundException,QueryParamConflictException,ServerOdooException};
 use \Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
