@@ -2,6 +2,7 @@
 
 namespace Aabadawy\LaravelOdooIntegration;
 
+use aabadawy\LaravelOdooIntegration\Exceptions\InvalidObjectIdException;
 use Aabadawy\LaravelOdooIntegration\Exceptions\{ObjectNotFoundException,QueryParamConflictException,ServerOdooException};
 use \Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
@@ -240,6 +241,7 @@ class OdooConnection
         throw match($odoo_exception_status) {
             ResponseAlias::HTTP_CONFLICT            => (new QueryParamConflictException(...$inputs)),
             ResponseAlias::HTTP_NOT_FOUND           => (new ObjectNotFoundException(...$inputs)),
+            ResponseAlias::HTTP_BAD_REQUEST         => (new InvalidObjectIdException(...$inputs)),
             default                                 => (new ServerOdooException(...$inputs)),
         };
     }
