@@ -46,6 +46,8 @@ class OdooBuilder
 
     protected int $latestLogicalIndex = -1;
 
+    protected array $savableData = [];
+
     protected array $wheres = [];
 
     protected array $includes = [];
@@ -228,6 +230,18 @@ class OdooBuilder
         return $this->select($columns,'excludes');
     }
 
+    public function create(array $data)
+    {
+        return $this->connection
+            ->setModule($this->odooModule)->post($data);
+    }
+
+    public function update($ids,array $data):bool
+    {
+        return $this->connection->setModule($this->odooModule)
+            ->put($ids,$data);
+    }
+
     protected function select(string | array $columns = "id",string $for = 'includes'): static
     {
         $columns = is_array($columns) ? $columns : func_get_args();
@@ -382,6 +396,19 @@ class OdooBuilder
         return $this->wheres;
     }
 
+
+    protected function parseSavableData(array $attributes):string
+    {
+        if(empty($attributes))
+            return "";
+
+        foreach ($attributes as $key => $attribute) {
+            if(is_array($attribute))
+                return "";
+        }
+
+        return implode("&",$this->savableData);
+    }
 
 
     public function buildSelectQuery(array $selects)

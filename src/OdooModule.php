@@ -17,8 +17,15 @@ abstract class OdooModule implements Arrayable
 
     protected array $attributes = [];
 
+    /**
+     * detremine current module had just been created
+     * @var bool
+     */
+    protected bool $wasRecentlyCreated = false;
+
     public function __construct()
     {
+        $wasReacntr;
         $this->odooModuleName = $this->moduleName();
     }
 
@@ -31,6 +38,16 @@ abstract class OdooModule implements Arrayable
     public static function all(string | array $columns = 'id')
     {
         return static::query()->get($columns);
+    }
+
+    public function setWasRecentlyCreated(bool $justCreated = false)
+    {
+        $this->wasRecentlyCreated = $justCreated;
+    }
+
+    public function justCreated():bool
+    {
+        return $this->wasRecentlyCreated;
     }
 
     public function getAttributes()
@@ -64,6 +81,19 @@ abstract class OdooModule implements Arrayable
         return $this->odooRepo
             ->setModule($this)
             ->setOdooModuleName($this->odooModuleName);
+    }
+
+    public function update(array $data):bool
+    {
+        if(! $this->existInOdoo())
+            return false;
+
+        return $this->newQuery()->update($data);
+    }
+
+    protected function existInOdoo()
+    {
+        return ! is_null($this->id);
     }
 
     /**
@@ -123,6 +153,7 @@ abstract class OdooModule implements Arrayable
 
     public function __set(string $name, $value): void
     {
+        // todo prevent client from fill id for new instance
         $this->attributes[$name] = $value;
     }
 
