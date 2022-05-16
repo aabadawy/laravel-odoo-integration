@@ -271,9 +271,9 @@ class OdooBuilder
         $this->resetQueries();
 
         $queryParams = [
-            'filters' => Str::of($filters)->start('[')->append(']'),
-            'include_fields' => Str::of($includes)->start('[')->append(']'),
-            'exclude_fields' => Str::of($excludes)->start('[')->append(']'),
+            'filters'        => (string)  Str::of($filters)->start('[')->append(']'),
+            'include_fields' => (string)  Str::of($includes)->start('[')->append(']'),
+            'exclude_fields' => (string)  Str::of($excludes)->start('[')->append(']'),
             'order'          => implode(',',$this->orders),
             'limit'          => $this->limit ?: null,
             'count'          =>  $this->only_count ?: null
