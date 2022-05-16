@@ -12,8 +12,8 @@ class LaravelOdooIntegrationServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/odoo-integration.php' => config_path('odoo-integration.php'),
-        ]);
-        
+        ],'config');
+
 
 
         if($this->app->runningInConsole())
