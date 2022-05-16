@@ -19,37 +19,29 @@ You can install the package via composer:
 composer require aabadawy/laravel-odoo-integration
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --provider="Aabadawy\LaravelOdooIntegration\LaravelOdooIntegrationServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
 
 ```php
 return [
+    'default'   => [
+        'token' => env('ODOO_TOKEN'),
+        'url' => env('ODOO_URL'),
+        'user_id' => '1',
+    ]
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
 
 ## Usage
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+
 ```
 
 ## Testing
@@ -64,7 +56,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/spatie/aabadawy/blob/main/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
