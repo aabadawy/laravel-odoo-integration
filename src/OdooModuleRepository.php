@@ -38,6 +38,27 @@ class OdooModuleRepository
         return $this->module->newInstance($response->toArray());
     }
 
+    public function create(array $data = [])
+    {
+        $module = $this->module->newInstance($data);
+
+        $module->id = $this->odooBuilder->setModule($this->odooModuleName)->create($data);
+
+        $module->setWasRecentlyCreated(true);
+
+        // todo fire events when start creating and when creat finished
+        return $module;
+    }
+
+    public function update(array $data = []):bool
+    {
+        $result = $this->odooBuilder->setModule($this->odooModuleName)->update($this->module->id,$data);
+
+        $this->module->fill($data);
+        
+        return $result;
+    }
+
     /**
      * @throws \Exception
      */

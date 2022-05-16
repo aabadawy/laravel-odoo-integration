@@ -67,24 +67,27 @@ class OdooConnection
     {
         $response = $this->connect()
             ->get($this->module,$this->queryParams);
-
-        return $response;
     }
 
-    public function post()
+    public function post(array $data = []):int
     {
+        $response = $this->connect()->post($this->module,$data);
 
+        return $this->parseResponse($response)->first();
     }
 
-    public function put()
+    public function put($ids,$data):bool
     {
+        $response = $this->connect()->put("$this->module/$ids",$data);
 
+        return $this->parseResponse($response)->isEmpty();
     }
 
     public function delete()
     {
 
     }
+
     /**
      * @param string $url
      */
